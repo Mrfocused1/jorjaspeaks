@@ -46,7 +46,7 @@ function App() {
     const totalImages = imagesToLoad.length;
 
     const imagePromises = imagesToLoad.map((src) => {
-      return new Promise((resolve, reject) => {
+      return new Promise((resolve) => {
         const img = new Image();
         img.onload = () => {
           loadedCount++;

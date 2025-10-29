@@ -1356,11 +1356,12 @@ body {
     }
 
     .hero h1 {
-        font-size: 36px;
+        font-size: 28px;
+        line-height: 1.2;
     }
 
     .hero-subtitle {
-        font-size: 18px;
+        font-size: 16px;
         max-width: 90%;
         margin: 0 auto 40px;
     }

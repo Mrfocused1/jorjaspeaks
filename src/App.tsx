@@ -67,6 +67,30 @@ function App() {
     };
   }, [mobileMenuOpen]);
 
+  useEffect(() => {
+    // Intersection Observer for scroll animations
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('animated');
+        }
+      });
+    }, observerOptions);
+
+    // Observe all elements with animate-on-scroll class
+    const animateElements = document.querySelectorAll('.animate-on-scroll');
+    animateElements.forEach(el => observer.observe(el));
+
+    return () => {
+      animateElements.forEach(el => observer.unobserve(el));
+    };
+  }, []);
+
   const speakingTopics = [
     {
       title: "Leadership Excellence",
@@ -243,6 +267,34 @@ function App() {
           <li><a href="#testimonials" onClick={closeMobileMenu}>Testimonials</a></li>
           <li><a href="#contact" onClick={closeMobileMenu}>Contact</a></li>
         </ul>
+
+        <div className="mobile-menu-footer">
+          <div className="mobile-menu-contact">
+            <div className="mobile-menu-contact-item">
+              <FiPhone />
+              <span>020 5847 3453</span>
+            </div>
+            <div className="mobile-menu-contact-item">
+              <FiMail />
+              <span>info@jorjaspeaks.site</span>
+            </div>
+          </div>
+
+          <div className="mobile-menu-social">
+            <span aria-label="LinkedIn">
+              <FaLinkedin />
+            </span>
+            <span aria-label="Instagram">
+              <FaInstagram />
+            </span>
+            <span aria-label="Twitter">
+              <FaTwitter />
+            </span>
+            <span aria-label="Facebook">
+              <FaFacebook />
+            </span>
+          </div>
+        </div>
       </div>
 
       {/* Hero Section */}
@@ -263,23 +315,23 @@ function App() {
 
       {/* About Section */}
       <section id="about" className="about">
-        <div className="about-image">
+        <div className="about-image animate-on-scroll">
           {/* Image is now a CSS background */}
         </div>
-        <div className="about-text">
+        <div className="about-text animate-on-scroll">
           <h2>About Jorja</h2>
           <p>Jorja Green is a dynamic public speaker who brings energy, expertise, and authenticity to every stage. With years of experience inspiring audiences worldwide, she delivers powerful messages that drive real change.</p>
           <p>Her engaging speaking style combines research-backed insights with relatable stories that resonate long after the event ends.</p>
           <div className="stats-container">
-            <div className="stat-item">
+            <div className="stat-item animate-on-scroll">
               <span className="stat-number"><Counter target={20} />+</span>
               <span className="stat-text">Speeches Given</span>
             </div>
-            <div className="stat-item">
+            <div className="stat-item animate-on-scroll">
               <span className="stat-number"><Counter target={50} />+</span>
               <span className="stat-text">Happy Clients</span>
             </div>
-            <div className="stat-item">
+            <div className="stat-item animate-on-scroll">
               <span className="stat-number"><Counter target={10} />+</span>
               <span className="stat-text">Years of Experience</span>
             </div>
@@ -290,13 +342,15 @@ function App() {
       {/* Speaking Topics Section */}
       <section id="speaking" className="speaking-section">
         <div className="container">
-          <h2 className="speaking-title">Speaking Topics</h2>
+          <h2 className="speaking-title animate-on-scroll">Speaking Topics</h2>
         </div>
-        {isMobile ? (
-          <VerticalAccordion items={accordionItems} />
-        ) : (
-          <StickyScroll content={speakingTopics} />
-        )}
+        <div className="animate-on-scroll">
+          {isMobile ? (
+            <VerticalAccordion items={accordionItems} />
+          ) : (
+            <StickyScroll content={speakingTopics} />
+          )}
+        </div>
       </section>
 
       {/* Testimonials Section */}
@@ -309,9 +363,9 @@ function App() {
       {/* Contact Section */}
       <section id="contact" className="contact">
         <div className="container">
-          <h2>Get in Touch</h2>
+          <h2 className="animate-on-scroll">Get in Touch</h2>
 
-          <form className="contact-form" onSubmit={handleSubmit}>
+          <form className="contact-form animate-on-scroll" onSubmit={handleSubmit}>
             <div className="form-row">
               <div className="form-group">
                 <label htmlFor="name">Name *</label>
@@ -414,18 +468,18 @@ function App() {
             <div className="footer-section">
               <h4>Follow</h4>
               <div className="footer-social">
-                <a href="https://www.linkedin.com" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+                <span aria-label="LinkedIn">
                   <FaLinkedin />
-                </a>
-                <a href="https://www.instagram.com" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+                </span>
+                <span aria-label="Instagram">
                   <FaInstagram />
-                </a>
-                <a href="https://www.twitter.com" target="_blank" rel="noopener noreferrer" aria-label="Twitter">
+                </span>
+                <span aria-label="Twitter">
                   <FaTwitter />
-                </a>
-                <a href="https://www.facebook.com" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+                </span>
+                <span aria-label="Facebook">
                   <FaFacebook />
-                </a>
+                </span>
               </div>
             </div>
           </div>

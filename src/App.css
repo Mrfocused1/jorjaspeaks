@@ -16,6 +16,33 @@ body {
     background: #000;
 }
 
+/* Micro Animations */
+.animate-on-scroll {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.animate-on-scroll.animated {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.fade-in-up {
+    animation: fadeInUp 0.6s ease-out forwards;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
 .container {
     max-width: 1200px;
     margin: 0 auto;
@@ -120,6 +147,54 @@ body {
 .mobile-menu-links a:hover {
     background: rgba(255, 255, 255, 0.05);
     padding-left: 40px;
+}
+
+/* Mobile Menu Footer */
+.mobile-menu-footer {
+    position: absolute;
+    bottom: 30px;
+    left: 0;
+    right: 0;
+    padding: 20px 30px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.mobile-menu-contact {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.mobile-menu-contact-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    color: #fff;
+    font-size: 14px;
+    opacity: 0.8;
+}
+
+.mobile-menu-contact-item svg {
+    font-size: 18px;
+}
+
+.mobile-menu-social {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+}
+
+.mobile-menu-social span {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.1);
+    color: #fff;
+    font-size: 18px;
 }
 
 /* Mobile Menu Overlay */
@@ -320,9 +395,10 @@ body {
 }
 
 .stat-text {
-    font-size: 16px;
+    font-size: 14px;
     color: #4a4a4a;
     margin-top: 5px;
+    font-weight: bold;
 }
 
 .about-image {
@@ -1221,7 +1297,7 @@ body {
     gap: 15px;
 }
 
-.footer-social a {
+.footer-social span {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -1231,13 +1307,6 @@ body {
     background: rgba(255, 255, 255, 0.1);
     color: #fff;
     font-size: 20px;
-    text-decoration: none;
-    transition: all 0.3s;
-}
-
-.footer-social a:hover {
-    background: rgba(255, 255, 255, 0.2);
-    transform: translateY(-3px);
 }
 
 .footer-bottom {
@@ -1270,11 +1339,16 @@ body {
         justify-content: center;
         align-items: center;
         text-align: center;
-        padding-top: 150px; /* Pushes content down */
+        padding: 150px 20px 20px 20px;
+        margin: 0 auto;
+        width: 100%;
     }
 
     .hero-text {
         text-align: center;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
     }
 
     .hero-cta {
@@ -1287,8 +1361,8 @@ body {
 
     .hero-subtitle {
         font-size: 18px;
-        max-width: 70%;
-        margin: 0 auto 40px; /* Center the block and add bottom margin */
+        max-width: 90%;
+        margin: 0 auto 40px;
     }
 
     .hero {

@@ -438,7 +438,6 @@ function GalleryScene({
 
         // Update plane positions
         const totalRange = depthRange;
-        const halfRange = totalRange / 2;
 
         planesData.current.forEach((plane, i) => {
             const spacing = totalRange / totalImages;
@@ -458,8 +457,6 @@ function GalleryScene({
             // Keep the original spatial x/y offsets
             plane.x = spatialPositions[i]?.x ?? 0;
             plane.y = spatialPositions[i]?.y ?? 0;
-
-            const worldZ = plane.z - halfRange;
 
             // Calculate opacity based on fade settings
             const normalizedPosition = plane.z / totalRange; // 0 to 1

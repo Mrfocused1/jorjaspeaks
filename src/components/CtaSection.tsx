@@ -7,11 +7,11 @@ interface CtaSectionProps {
 }
 
 const defaultItems = [
-  "Easy Integration",
-  "24/7 Support",
-  "Customizable Design",
-  "Scalable Performance",
-  "Hundreds of Blocks",
+  "Engaging Keynote Presentations",
+  "Interactive Workshops",
+  "Customized Content for Your Audience",
+  "Virtual & In-Person Events",
+  "Post-Event Resources",
 ];
 
 export const CtaSection = ({

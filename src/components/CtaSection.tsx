@@ -27,9 +27,9 @@ export const CtaSection = ({
         <div className="cta-content">
           <div className="cta-background-image"></div>
           <div className="cta-text">
-            <h2>{title}</h2>
-            <p>{description}</p>
-            <a href={buttonUrl} className="btn btn-primary cta-button">
+            <h2 className="animate-on-scroll">{title}</h2>
+            <p className="animate-on-scroll">{description}</p>
+            <a href={buttonUrl} className="btn btn-primary cta-button animate-on-scroll">
               {buttonText}
             </a>
           </div>

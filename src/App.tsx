@@ -372,9 +372,9 @@ function App() {
       >
         <div className="hero-content">
           <div className="hero-text">
-            <h1>Inspire. Transform. <span key={wordIndex} className="fading-word">{words[wordIndex]}</span></h1>
-            <p className="hero-subtitle">Empowering audiences with actionable insights and authentic storytelling</p>
-            <a href="#contact" className="btn btn-primary">Book a Speaking Engagement</a>
+            <h1 className="animate-on-scroll">Inspire. Transform. <span key={wordIndex} className="fading-word">{words[wordIndex]}</span></h1>
+            <p className="hero-subtitle animate-on-scroll">Empowering audiences with actionable insights and authentic storytelling</p>
+            <a href="#contact" className="btn btn-primary animate-on-scroll">Book a Speaking Engagement</a>
           </div>
         </div>
       </section>
@@ -459,7 +459,7 @@ function App() {
               </div>
             </div>
 
-            <div className="form-row">
+            <div className="form-row animate-on-scroll">
               <div className="form-group">
                 <label htmlFor="phone">Phone</label>
                 <input
@@ -482,7 +482,7 @@ function App() {
               </div>
             </div>
 
-            <div className="form-group">
+            <div className="form-group animate-on-scroll">
               <label htmlFor="event-date">Event Date</label>
               <input
                 type="date"
@@ -493,7 +493,7 @@ function App() {
               />
             </div>
 
-            <div className="form-group">
+            <div className="form-group animate-on-scroll">
               <label htmlFor="message">Message *</label>
               <textarea
                 id="message"
@@ -505,7 +505,7 @@ function App() {
               />
             </div>
 
-            <button type="submit" className="btn btn-primary">Send Message</button>
+            <button type="submit" className="btn btn-primary animate-on-scroll">Send Message</button>
           </form>
         </div>
       </section>

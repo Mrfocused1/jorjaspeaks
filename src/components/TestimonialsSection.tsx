@@ -22,10 +22,10 @@ export function TestimonialsSection({
     <section className={cn("testimonials-marquee-section", className)}>
       <div className="testimonials-marquee-container">
         <div className="testimonials-marquee-header">
-          <h2 className="testimonials-marquee-title">
+          <h2 className="testimonials-marquee-title animate-on-scroll">
             {title}
           </h2>
-          <p className="testimonials-marquee-description">
+          <p className="testimonials-marquee-description animate-on-scroll">
             {description}
           </p>
         </div>

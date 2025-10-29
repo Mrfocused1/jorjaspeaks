@@ -383,7 +383,7 @@ function App() {
           <p className="animate-on-scroll">Her engaging speaking style combines research-backed insights with relatable stories that resonate long after the event ends.</p>
           <div className="stats-container">
             <div className="stat-item animate-on-scroll">
-              <span className="stat-number"><Counter target={20} />+</span>
+              <span className="stat-number"><Counter target={70} />+</span>
               <span className="stat-text">Speeches Given</span>
             </div>
             <div className="stat-item animate-on-scroll">

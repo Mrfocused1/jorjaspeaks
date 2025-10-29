@@ -22,8 +22,53 @@ function App() {
   const [scrollPosition, setScrollPosition] = useState(0);
   const [showScrollTop, setShowScrollTop] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
+  const [loadingProgress, setLoadingProgress] = useState(0);
   const words = ['Lead.', 'Innovate.', 'Engage.', 'Succeed.'];
   const [wordIndex, setWordIndex] = useState(0);
+
+  useEffect(() => {
+    // Preload all images
+    const imagesToLoad = [
+      '/images/4-desktop.jpg',
+      '/images/mobile 4.jpg',
+      '/images/about jorja 4.jpg',
+      '/images/crowd-2.jpg',
+      '/images/get in touch.jpg',
+      '/images/Get Started.jpg',
+      '/images/leadership.png',
+      '/images/personal development.jpg',
+      '/images/innovation.png',
+      '/images/Communication skills.jpg'
+    ];
+
+    let loadedCount = 0;
+    const totalImages = imagesToLoad.length;
+
+    const imagePromises = imagesToLoad.map((src) => {
+      return new Promise((resolve, reject) => {
+        const img = new Image();
+        img.onload = () => {
+          loadedCount++;
+          setLoadingProgress(Math.round((loadedCount / totalImages) * 100));
+          resolve(src);
+        };
+        img.onerror = () => {
+          loadedCount++;
+          setLoadingProgress(Math.round((loadedCount / totalImages) * 100));
+          resolve(src); // Resolve anyway to not block loading
+        };
+        img.src = src;
+      });
+    });
+
+    Promise.all(imagePromises).then(() => {
+      // Wait a bit to show 100% before hiding loader
+      setTimeout(() => {
+        setIsLoading(false);
+      }, 500);
+    });
+  }, []);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -233,9 +278,23 @@ function App() {
   };
 
   return (
-    <div className="app">
-      {/* Navigation */}
-      <nav className="navbar">
+    <>
+      {/* Loading Screen */}
+      {isLoading && (
+        <div className="loading-screen">
+          <div className="loading-content">
+            <h1 className="loading-title">Jorja Green</h1>
+            <div className="loading-bar-container">
+              <div className="loading-bar" style={{ width: `${loadingProgress}%` }}></div>
+            </div>
+            <p className="loading-percentage">{loadingProgress}%</p>
+          </div>
+        </div>
+      )}
+
+      <div className="app">
+        {/* Navigation */}
+        <nav className="navbar">
         <div className="container">
           <div className="logo">Jorja Green</div>
           <ul className="nav-links">
@@ -319,9 +378,9 @@ function App() {
           {/* Image is now a CSS background */}
         </div>
         <div className="about-text animate-on-scroll">
-          <h2>About Jorja</h2>
-          <p>Jorja Green is a dynamic public speaker who brings energy, expertise, and authenticity to every stage. With years of experience inspiring audiences worldwide, she delivers powerful messages that drive real change.</p>
-          <p>Her engaging speaking style combines research-backed insights with relatable stories that resonate long after the event ends.</p>
+          <h2 className="animate-on-scroll">About Jorja</h2>
+          <p className="animate-on-scroll">Jorja Green is a dynamic public speaker who brings energy, expertise, and authenticity to every stage. With years of experience inspiring audiences worldwide, she delivers powerful messages that drive real change.</p>
+          <p className="animate-on-scroll">Her engaging speaking style combines research-backed insights with relatable stories that resonate long after the event ends.</p>
           <div className="stats-container">
             <div className="stat-item animate-on-scroll">
               <span className="stat-number"><Counter target={20} />+</span>
@@ -366,7 +425,7 @@ function App() {
           <h2 className="animate-on-scroll">Get in Touch</h2>
 
           <form className="contact-form animate-on-scroll" onSubmit={handleSubmit}>
-            <div className="form-row">
+            <div className="form-row animate-on-scroll">
               <div className="form-group">
                 <label htmlFor="name">Name *</label>
                 <input
@@ -448,24 +507,24 @@ function App() {
       <footer className="footer">
         <div className="container">
           <div className="footer-content">
-            <div className="footer-section">
+            <div className="footer-section animate-on-scroll">
               <h3>Jorja Green</h3>
               <p>Inspiring audiences with actionable insights and authentic storytelling</p>
             </div>
 
-            <div className="footer-section">
+            <div className="footer-section animate-on-scroll">
               <h4>Contact</h4>
               <div className="footer-contact">
-                <a href="tel:02058473453" className="footer-link">
+                <div className="footer-link">
                   <FiPhone /> 020 5847 3453
-                </a>
-                <a href="mailto:info@jorjaspeaks.site" className="footer-link">
+                </div>
+                <div className="footer-link">
                   <FiMail /> info@jorjaspeaks.site
-                </a>
+                </div>
               </div>
             </div>
 
-            <div className="footer-section">
+            <div className="footer-section animate-on-scroll">
               <h4>Follow</h4>
               <div className="footer-social">
                 <span aria-label="LinkedIn">
@@ -498,7 +557,8 @@ function App() {
       >
         <FiArrowUp />
       </button>
-    </div>
+      </div>
+    </>
   );
 }
 

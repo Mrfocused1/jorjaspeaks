@@ -1,4 +1,4 @@
-# Georgia Green - Public Speaker Website
+# Jorja Green - Public Speaker Website
 
 A modern, interactive one-page website featuring a 3D infinite gallery powered by React Three Fiber.
 

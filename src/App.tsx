@@ -4,7 +4,8 @@ import { VerticalAccordion, AccordionItem } from './components/VerticalAccordion
 import { TestimonialsSection } from './components/TestimonialsSection';
 import Counter from './components/Counter';
 import { CtaSection } from './components/CtaSection';
-import { FiBarChart, FiBell, FiDollarSign, FiPlay } from "react-icons/fi";
+import { FiBarChart, FiBell, FiDollarSign, FiPlay, FiArrowUp, FiMail, FiPhone, FiMenu, FiX } from "react-icons/fi";
+import { FaLinkedin, FaInstagram, FaTwitter, FaFacebook } from "react-icons/fa";
 import './App.css';
 
 function App() {
@@ -19,6 +20,8 @@ function App() {
 
   const [isMobile, setIsMobile] = useState(false);
   const [scrollPosition, setScrollPosition] = useState(0);
+  const [showScrollTop, setShowScrollTop] = useState(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const words = ['Lead.', 'Innovate.', 'Engage.', 'Succeed.'];
   const [wordIndex, setWordIndex] = useState(0);
 
@@ -31,7 +34,11 @@ function App() {
 
   useEffect(() => {
     const handleScroll = () => {
-      setScrollPosition(window.pageYOffset);
+      const position = window.pageYOffset;
+      setScrollPosition(position);
+
+      // Show button when scrolled past hero section (approximately 600px)
+      setShowScrollTop(position > 600);
     };
     window.addEventListener('scroll', handleScroll);
     return () => {
@@ -48,10 +55,22 @@ function App() {
     return () => window.removeEventListener('resize', checkMobile);
   }, []);
 
+  useEffect(() => {
+    // Prevent body scroll when mobile menu is open
+    if (mobileMenuOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'unset';
+    }
+    return () => {
+      document.body.style.overflow = 'unset';
+    };
+  }, [mobileMenuOpen]);
+
   const speakingTopics = [
     {
       title: "Leadership Excellence",
-      description: "Transform your leadership approach with actionable strategies that inspire teams and drive organizational success. Georgia delivers powerful insights on authentic leadership, emotional intelligence, and creating cultures of accountability.",
+      description: "Transform your leadership approach with actionable strategies that inspire teams and drive organizational success. Jorja delivers powerful insights on authentic leadership, emotional intelligence, and creating cultures of accountability.",
       content: (
         <div className="sticky-scroll-image-container">
           <img src="/images/leadership.png" alt="Leadership Excellence" />
@@ -60,7 +79,7 @@ function App() {
     },
     {
       title: "Personal Development",
-      description: "Unlock your full potential through proven strategies for growth, resilience, and peak performance. Georgia combines research-backed frameworks with practical tools to help individuals break through limitations and achieve sustainable success.",
+      description: "Unlock your full potential through proven strategies for growth, resilience, and peak performance. Jorja combines research-backed frameworks with practical tools to help individuals break through limitations and achieve sustainable success.",
       content: (
         <div className="sticky-scroll-image-container">
           <img src="/images/personal development.jpg" alt="Personal Development" />
@@ -69,7 +88,7 @@ function App() {
     },
     {
       title: "Innovation & Change",
-      description: "Navigate organizational transformation with practical frameworks that turn resistance into momentum. Georgia provides actionable strategies for leading change initiatives, fostering innovation, and building adaptive organizations.",
+      description: "Navigate organizational transformation with practical frameworks that turn resistance into momentum. Jorja provides actionable strategies for leading change initiatives, fostering innovation, and building adaptive organizations.",
       content: (
         <div className="sticky-scroll-image-container">
           <img src="/images/innovation.png" alt="Innovation & Change" />
@@ -78,7 +97,7 @@ function App() {
     },
     {
       title: "Communication Skills",
-      description: "Master the art of influential communication that builds relationships, resolves conflicts, and drives results. Georgia teaches practical techniques for clear messaging, active listening, and adapting your communication style for maximum impact.",
+      description: "Master the art of influential communication that builds relationships, resolves conflicts, and drives results. Jorja teaches practical techniques for clear messaging, active listening, and adapting your communication style for maximum impact.",
       content: (
         <div className="sticky-scroll-image-container">
           <img src="/images/Communication skills.jpg" alt="Communication Skills" />
@@ -124,42 +143,42 @@ function App() {
         name: "Sarah Johnson",
         title: "CEO, TechCorp",
       },
-      text: "Georgia's presentation was the highlight of our conference. Her insights were practical and immediately applicable to our work. The team left inspired and ready to implement real change."
+      text: "Jorja's presentation was the highlight of our conference. Her insights were practical and immediately applicable to our work. The team left inspired and ready to implement real change."
     },
     {
       author: {
         name: "Michael Chen",
         title: "Event Organizer",
       },
-      text: "An incredible speaker who connects with the audience on a personal level. Our team left inspired and motivated. Georgia has a unique ability to make complex topics accessible."
+      text: "An incredible speaker who connects with the audience on a personal level. Our team left inspired and motivated. Jorja has a unique ability to make complex topics accessible."
     },
     {
       author: {
         name: "Jennifer Williams",
         title: "HR Director, GlobalEnt",
       },
-      text: "Georgia delivered exactly what we needed. Professional, engaging, and full of valuable takeaways. The feedback from our leadership team was overwhelmingly positive."
+      text: "Jorja delivered exactly what we needed. Professional, engaging, and full of valuable takeaways. The feedback from our leadership team was overwhelmingly positive."
     },
     {
       author: {
         name: "David Martinez",
         title: "VP of Operations",
       },
-      text: "We've had many speakers at our events, but Georgia stands out. Her energy is contagious and her message resonates long after the presentation ends."
+      text: "We've had many speakers at our events, but Jorja stands out. Her energy is contagious and her message resonates long after the presentation ends."
     },
     {
       author: {
         name: "Lisa Anderson",
         title: "Learning & Development Manager",
       },
-      text: "Georgia's workshop transformed our approach to leadership development. The tools and frameworks she provided are now core to our training program."
+      text: "Jorja's workshop transformed our approach to leadership development. The tools and frameworks she provided are now core to our training program."
     },
     {
       author: {
         name: "Robert Taylor",
         title: "Conference Chair",
       },
-      text: "Booking Georgia was one of the best decisions we made. Her keynote was powerful, authentic, and perfectly tailored to our audience. Highly recommend!"
+      text: "Booking Jorja was one of the best decisions we made. Her keynote was powerful, authentic, and perfectly tailored to our audience. Highly recommend!"
     }
   ];
 
@@ -171,7 +190,22 @@ function App() {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     console.log('Form submitted:', formData);
-    alert('Thank you for your message! Georgia will be in touch soon.');
+    alert('Thank you for your message! Jorja will be in touch soon.');
+  };
+
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
+  };
+
+  const toggleMobileMenu = () => {
+    setMobileMenuOpen(!mobileMenuOpen);
+  };
+
+  const closeMobileMenu = () => {
+    setMobileMenuOpen(false);
   };
 
   return (
@@ -179,15 +213,37 @@ function App() {
       {/* Navigation */}
       <nav className="navbar">
         <div className="container">
-          <div className="logo">Georgia Green</div>
+          <div className="logo">Jorja Green</div>
           <ul className="nav-links">
             <li><a href="#about">About</a></li>
             <li><a href="#speaking">Speaking</a></li>
             <li><a href="#testimonials">Testimonials</a></li>
             <li><a href="#contact">Contact</a></li>
           </ul>
+          <button
+            className="mobile-menu-toggle"
+            onClick={toggleMobileMenu}
+            aria-label="Toggle menu"
+          >
+            {mobileMenuOpen ? <FiX /> : <FiMenu />}
+          </button>
         </div>
       </nav>
+
+      {/* Mobile Menu Overlay */}
+      {mobileMenuOpen && (
+        <div className="mobile-menu-overlay" onClick={closeMobileMenu} />
+      )}
+
+      {/* Mobile Menu */}
+      <div className={`mobile-menu ${mobileMenuOpen ? 'open' : ''}`}>
+        <ul className="mobile-menu-links">
+          <li><a href="#about" onClick={closeMobileMenu}>About</a></li>
+          <li><a href="#speaking" onClick={closeMobileMenu}>Speaking</a></li>
+          <li><a href="#testimonials" onClick={closeMobileMenu}>Testimonials</a></li>
+          <li><a href="#contact" onClick={closeMobileMenu}>Contact</a></li>
+        </ul>
+      </div>
 
       {/* Hero Section */}
       <section
@@ -211,8 +267,8 @@ function App() {
           {/* Image is now a CSS background */}
         </div>
         <div className="about-text">
-          <h2>About Georgia</h2>
-          <p>Georgia Green is a dynamic public speaker who brings energy, expertise, and authenticity to every stage. With years of experience inspiring audiences worldwide, she delivers powerful messages that drive real change.</p>
+          <h2>About Jorja</h2>
+          <p>Jorja Green is a dynamic public speaker who brings energy, expertise, and authenticity to every stage. With years of experience inspiring audiences worldwide, she delivers powerful messages that drive real change.</p>
           <p>Her engaging speaking style combines research-backed insights with relatable stories that resonate long after the event ends.</p>
           <div className="stats-container">
             <div className="stat-item">
@@ -246,7 +302,7 @@ function App() {
       {/* Testimonials Section */}
       <TestimonialsSection
         title="What People Say"
-        description="Hear from event organizers, executives, and teams who have experienced Georgia's transformative presentations."
+        description="Hear from event organizers, executives, and teams who have experienced Jorja's transformative presentations."
         testimonials={testimonialsData}
       />
 
@@ -337,9 +393,57 @@ function App() {
       {/* Footer */}
       <footer className="footer">
         <div className="container">
-          <p>&copy; 2025 Georgia Green. All rights reserved.</p>
+          <div className="footer-content">
+            <div className="footer-section">
+              <h3>Jorja Green</h3>
+              <p>Inspiring audiences with actionable insights and authentic storytelling</p>
+            </div>
+
+            <div className="footer-section">
+              <h4>Contact</h4>
+              <div className="footer-contact">
+                <a href="tel:02058473453" className="footer-link">
+                  <FiPhone /> 020 5847 3453
+                </a>
+                <a href="mailto:info@jorjaspeaks.site" className="footer-link">
+                  <FiMail /> info@jorjaspeaks.site
+                </a>
+              </div>
+            </div>
+
+            <div className="footer-section">
+              <h4>Follow</h4>
+              <div className="footer-social">
+                <a href="https://www.linkedin.com" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+                  <FaLinkedin />
+                </a>
+                <a href="https://www.instagram.com" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+                  <FaInstagram />
+                </a>
+                <a href="https://www.twitter.com" target="_blank" rel="noopener noreferrer" aria-label="Twitter">
+                  <FaTwitter />
+                </a>
+                <a href="https://www.facebook.com" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+                  <FaFacebook />
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <div className="footer-bottom">
+            <p>&copy; 2025 Jorja Green. All rights reserved.</p>
+          </div>
         </div>
       </footer>
+
+      {/* Scroll to Top Button */}
+      <button
+        className={`scroll-to-top ${showScrollTop ? 'visible' : ''}`}
+        onClick={scrollToTop}
+        aria-label="Scroll to top"
+      >
+        <FiArrowUp />
+      </button>
     </div>
   );
 }

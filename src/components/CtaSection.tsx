@@ -15,8 +15,8 @@ const defaultItems = [
 ];
 
 export const CtaSection = ({
-  title = "Get Started with Georgia",
-  description = "Ready to inspire your audience? Book a speaking engagement today and bring Georgia's transformative message to your next event.",
+  title = "Get Started with Jorja",
+  description = "Ready to inspire your audience? Book a speaking engagement today and bring Jorja's transformative message to your next event.",
   buttonText = "Book Now",
   buttonUrl = "#contact",
   items = defaultItems,

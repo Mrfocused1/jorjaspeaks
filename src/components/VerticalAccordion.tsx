@@ -1,5 +1,5 @@
 "use client";
-import { Dispatch, SetStateAction, useState, useEffect } from "react";
+import { Dispatch, SetStateAction, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { IconType } from "react-icons";
 

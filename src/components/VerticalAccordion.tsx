@@ -1,25 +1,7 @@
 "use client";
-import React, { Dispatch, SetStateAction, useState, useEffect } from "react";
+import { Dispatch, SetStateAction, useState, useEffect } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { IconType } from "react-icons";
-
-// Custom hook for window size
-function useWindowSize() {
-  const [windowSize, setWindowSize] = useState<{ width: number; height: number }>(() => {
-    if (typeof window !== 'undefined') {
-      return { width: window.innerWidth, height: window.innerHeight };
-    }
-    return { width: 0, height: 0 };
-  });
-
-  useEffect(() => {
-    if (typeof window === 'undefined') return;
-    const handleResize = () => setWindowSize({ width: window.innerWidth, height: window.innerHeight });
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
-  }, []);
-  return windowSize;
-}
 
 export interface AccordionItem {
   id: number;
@@ -50,7 +32,7 @@ interface PanelProps {
 }
 
 const Panel = ({ open, setOpen, item }: PanelProps) => {
-  const { id, Icon, title, imgSrc, description } = item;
+  const { id, title, imgSrc, description } = item;
   const isOpen = open === id;
 
   return (

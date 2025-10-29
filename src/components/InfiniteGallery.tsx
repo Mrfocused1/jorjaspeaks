@@ -1,6 +1,6 @@
 import type React from 'react';
 import { useRef, useMemo, useCallback, useState, useEffect } from 'react';
-import { Canvas, useFrame, useThree } from '@react-three/fiber';
+import { Canvas, useFrame } from '@react-three/fiber';
 import { useTexture } from '@react-three/drei';
 import * as THREE from 'three';
 
@@ -553,8 +553,6 @@ function GalleryScene({
 
                 if (!texture || !material) return null;
 
-                const worldZ = plane.z - depthRange / 2;
-
                 // Calculate scale to maintain aspect ratio
                 const aspect = texture.image
                     ? texture.image.width / texture.image.height
@@ -569,7 +567,7 @@ function GalleryScene({
                     <ImagePlane
                         key={plane.index}
                         texture={texture}
-                        position={[plane.x, plane.y, worldZ]} // Position planes relative to camera center
+                        position={[plane.x, plane.y, plane.z - depthRange / 2]} // Position planes relative to camera center
                         scale={scale}
                         material={material}
                         disableHover={disableHover}

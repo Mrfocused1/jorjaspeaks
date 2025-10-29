@@ -42,88 +42,13 @@ body {
     color: #fff;
 }
 
-.loading-icon-wrapper {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
-    margin-bottom: 30px;
-    height: 80px;
-}
-
 .loading-text {
-    font-size: 24px;
+    font-size: 32px;
     font-weight: 600;
     color: #fff;
-    margin-bottom: 20px;
-    letter-spacing: 2px;
+    margin-bottom: 30px;
+    letter-spacing: 3px;
     text-transform: uppercase;
-}
-
-.loading-microphone {
-    font-size: 64px;
-    color: #fff;
-    animation: micPulse 2s ease-in-out infinite;
-    z-index: 2;
-}
-
-@keyframes micPulse {
-    0%, 100% {
-        transform: scale(1);
-        opacity: 1;
-    }
-    50% {
-        transform: scale(1.1);
-        opacity: 0.9;
-    }
-}
-
-.sound-wave {
-    width: 4px;
-    background: linear-gradient(180deg, #fff 0%, rgba(255, 255, 255, 0.5) 100%);
-    border-radius: 2px;
-    animation: soundWave 1.2s ease-in-out infinite;
-}
-
-.wave-1 {
-    height: 20px;
-    animation-delay: 0s;
-}
-
-.wave-2 {
-    height: 35px;
-    animation-delay: 0.1s;
-}
-
-.wave-3 {
-    height: 50px;
-    animation-delay: 0.2s;
-}
-
-.wave-4 {
-    height: 50px;
-    animation-delay: 0.3s;
-}
-
-.wave-5 {
-    height: 35px;
-    animation-delay: 0.4s;
-}
-
-.wave-6 {
-    height: 20px;
-    animation-delay: 0.5s;
-}
-
-@keyframes soundWave {
-    0%, 100% {
-        transform: scaleY(0.5);
-        opacity: 0.5;
-    }
-    50% {
-        transform: scaleY(1);
-        opacity: 1;
-    }
 }
 
 .loading-bar-container {
@@ -150,34 +75,9 @@ body {
 }
 
 @media (max-width: 768px) {
-    .loading-icon-wrapper {
-        height: 60px;
-        margin-bottom: 25px;
-    }
-
     .loading-text {
-        font-size: 20px;
-        margin-bottom: 15px;
-    }
-
-    .loading-microphone {
-        font-size: 48px;
-    }
-
-    .sound-wave {
-        width: 3px;
-    }
-
-    .wave-1, .wave-6 {
-        height: 15px;
-    }
-
-    .wave-2, .wave-5 {
-        height: 25px;
-    }
-
-    .wave-3, .wave-4 {
-        height: 35px;
+        font-size: 24px;
+        margin-bottom: 25px;
     }
 
     .loading-bar-container {

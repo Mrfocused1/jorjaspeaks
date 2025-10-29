@@ -4,7 +4,7 @@ import { VerticalAccordion, AccordionItem } from './components/VerticalAccordion
 import { TestimonialsSection } from './components/TestimonialsSection';
 import Counter from './components/Counter';
 import { CtaSection } from './components/CtaSection';
-import { FiBarChart, FiBell, FiDollarSign, FiPlay, FiArrowUp, FiMail, FiPhone, FiMenu, FiX, FiMic } from "react-icons/fi";
+import { FiBarChart, FiBell, FiDollarSign, FiPlay, FiArrowUp, FiMail, FiPhone, FiMenu, FiX } from "react-icons/fi";
 import { FaLinkedin, FaInstagram, FaTwitter, FaFacebook } from "react-icons/fa";
 import './App.css';
 
@@ -283,15 +283,6 @@ function App() {
       {isLoading && (
         <div className="loading-screen">
           <div className="loading-content">
-            <div className="loading-icon-wrapper">
-              <div className="sound-wave wave-1"></div>
-              <div className="sound-wave wave-2"></div>
-              <div className="sound-wave wave-3"></div>
-              <FiMic className="loading-microphone" />
-              <div className="sound-wave wave-4"></div>
-              <div className="sound-wave wave-5"></div>
-              <div className="sound-wave wave-6"></div>
-            </div>
             <p className="loading-text">Loading</p>
             <div className="loading-bar-container">
               <div className="loading-bar" style={{ width: `${loadingProgress}%` }}></div>
